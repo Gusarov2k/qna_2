@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 	describe 'GET #index' do
 		it 'populates an array of all questions' do
-			question1 = FactoryGirl.create(:question)
-			question2 = FactoryGirl.create(:question)
+			question1 = FactoryBot.create(:question)
+			question2 = FactoryBot.create(:question)
 
 			get :index
 
