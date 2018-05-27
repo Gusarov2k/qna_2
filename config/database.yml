@@ -11,10 +11,10 @@ default: &default
 
 development:
   <<: *default
-  database: qa_development
+  database: qna_development
 
   
 test:
   <<: *default
-  database: qa_test
+  database: qna_test
 
