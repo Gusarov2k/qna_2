@@ -12,7 +12,6 @@ RSpec.describe QuestionsController, type: :controller do
 			get :index
 		end
 
-
 		it 'populates an array of all questions' do
 			expect(assigns(:questions)).to match_array(questions)
 		end
@@ -24,7 +23,6 @@ RSpec.describe QuestionsController, type: :controller do
 
 	describe 'GET #show' do
 		
-
 		before {get :show, id: question}
 
 		it 'assigns the requested question to @question' do
@@ -59,5 +57,34 @@ RSpec.describe QuestionsController, type: :controller do
 		it 'renders edit view' do
 			expect(response).to render_template :edit
 		end
+	end
+
+	describe 'POST #create' do
+		context 'with valid attributes' do
+			it 'saves the new question in the database' do
+				expect {post :create, question: FactoryBot.attributes_for(:question)}.to change(Question, :count).by(1)
+			end
+			it 'redirects to show view' do
+				post :create, question: FactoryBot.attributes_for(:question)
+				expect(response).to redirect_to question_path(assigns(:question))
+
+			end
+
+		end
+
+		context 'with invalid attributes' do
+			it 'does not save the question' do
+				expect {post :create, question: FactoryBot.attributes_for(:invalid_question)}.to_not change(Question, :count)
+			end
+
+			it 're-renders new view' do
+				post :create, question: FactoryBot.attributes_for(:invalid_question)
+				expect(response).to render_template :new
+			end
+		end
+	end
+
+	describe 'PATCH #update' do
+		
 	end
 end
