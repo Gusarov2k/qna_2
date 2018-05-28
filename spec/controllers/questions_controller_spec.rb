@@ -46,7 +46,7 @@ RSpec.describe QuestionsController, type: :controller do
 	end
 
 	describe 'GET #edit' do
-		let(:question) {create(:question)}
+		let(:question) {FactoryBot.create(:question)}
 		before {get :edit, id: question}
 
 		it 'assigns the requested question to @question' do
