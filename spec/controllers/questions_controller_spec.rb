@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+	
+	let(:question) {FactoryBot.create(:question)}
+
 	describe 'GET #index' do
 		
 		let(:questions) {FactoryBot.create_list(:question, 2)}
@@ -20,7 +23,7 @@ RSpec.describe QuestionsController, type: :controller do
 	end
 
 	describe 'GET #show' do
-		let(:question) {FactoryBot.create(:question)}
+		
 
 		before {get :show, id: question}
 
@@ -46,7 +49,7 @@ RSpec.describe QuestionsController, type: :controller do
 	end
 
 	describe 'GET #edit' do
-		let(:question) {FactoryBot.create(:question)}
+		
 		before {get :edit, id: question}
 
 		it 'assigns the requested question to @question' do
